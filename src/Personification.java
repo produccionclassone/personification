@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -10,7 +11,6 @@ import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
-
 
 public class Personification {
 	private String comercialName;
@@ -252,166 +252,149 @@ public class Personification {
 	public void setDbPath(String dbPath) {
 		this.dbPath = dbPath;
 	}
-	
-	public void createXML() throws ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException, NoSuchAlgorithmException, IOException{
+
+	public void createXML() throws ParserConfigurationException,
+			TransformerFactoryConfigurationError, TransformerException,
+			NoSuchAlgorithmException, IOException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		DOMImplementation implementation = builder.getDOMImplementation();
-		Document document = implementation.createDocument(null, "personification", null);
+		Document document = implementation.createDocument(null,
+				"personification", null);
 		document.setXmlVersion("1.0");
-		
+
 		Element root = document.getDocumentElement();
-		Element nameNode = document.createElement("comercialName"); //creamos un nuevo elemento
-		Text valueNode = document.createTextNode(getComercialName()); //Ingresamos la info				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode); //pegamos el elemento a la raiz "Documento"
-		
-		nameNode = document.createElement("taxName"); 
-		valueNode = document.createTextNode(getTaxName());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("streetAddress"); 
-		valueNode = document.createTextNode(getStreetAddress());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("zip"); 
-		valueNode = document.createTextNode(getZip());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("state"); 
-		valueNode = document.createTextNode(getState());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("country"); 
-		valueNode = document.createTextNode(getCountry());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("phone1"); 
-		valueNode = document.createTextNode(getPhone1());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("phone2"); 
-		valueNode = document.createTextNode(getPhone2());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("mail"); 
-		valueNode = document.createTextNode(getMail());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("web"); 
-		valueNode = document.createTextNode(getWebsite());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("cif"); 
-		valueNode = document.createTextNode(getCif());				
-		nameNode.appendChild(valueNode); 						
+		Element nameNode = document.createElement("comercialName"); // creamos
+																	// un nuevo
+																	// elemento
+		Text valueNode = document.createTextNode(getComercialName()); // Ingresamos
+																		// la
+																		// info
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode); // pegamos el elemento a la raiz "Documento"
+
+		nameNode = document.createElement("taxName");
+		valueNode = document.createTextNode(getTaxName());
+		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
 
-		nameNode = document.createElement("key1"); 
-		valueNode = document.createTextNode(getKey1());				
-		nameNode.appendChild(valueNode); 						
+		nameNode = document.createElement("streetAddress");
+		valueNode = document.createTextNode(getStreetAddress());
+		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("modules"); 
-		valueNode = document.createTextNode(getModules());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("os"); 
-		valueNode = document.createTextNode(getOs());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("demo"); 
-		valueNode = document.createTextNode(getDemo());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("otherData"); 
-		valueNode = document.createTextNode(getOtherData());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("key2"); 
-		valueNode = document.createTextNode(getKey2());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("terminals"); 
-		valueNode = document.createTextNode(getTerminals());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("expirationDate"); 
-		valueNode = document.createTextNode(getExpirationDate());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("expirationDateMaintenance"); 
-		valueNode = document.createTextNode(getExpirationDateMaintenance());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		nameNode = document.createElement("version"); 
-		valueNode = document.createTextNode(getVersion());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("language"); 
-		valueNode = document.createTextNode(getLanguage());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);
-		
-		nameNode = document.createElement("dbPath"); 
-		valueNode = document.createTextNode(getDbPath());				
-		nameNode.appendChild(valueNode); 						
-		root.appendChild(nameNode);	
 
-		
-		//Si es linux o es windows cambiar la ruta de creacion
+		nameNode = document.createElement("zip");
+		valueNode = document.createTextNode(getZip());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("state");
+		valueNode = document.createTextNode(getState());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("country");
+		valueNode = document.createTextNode(getCountry());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("phone1");
+		valueNode = document.createTextNode(getPhone1());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("phone2");
+		valueNode = document.createTextNode(getPhone2());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("mail");
+		valueNode = document.createTextNode(getMail());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("web");
+		valueNode = document.createTextNode(getWebsite());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("cif");
+		valueNode = document.createTextNode(getCif());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("key1");
+		valueNode = document.createTextNode(getKey1());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("modules");
+		valueNode = document.createTextNode(getModules());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("os");
+		valueNode = document.createTextNode(getOs());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("demo");
+		valueNode = document.createTextNode(getDemo());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("otherData");
+		valueNode = document.createTextNode(getOtherData());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("key2");
+		valueNode = document.createTextNode(getKey2());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("terminals");
+		valueNode = document.createTextNode(getTerminals());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("expirationDate");
+		valueNode = document.createTextNode(getExpirationDate());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("expirationDateMaintenance");
+		valueNode = document.createTextNode(getExpirationDateMaintenance());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+		nameNode = document.createElement("version");
+		valueNode = document.createTextNode(getVersion());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("language");
+		valueNode = document.createTextNode(getLanguage());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		nameNode = document.createElement("dbPath");
+		valueNode = document.createTextNode(getDbPath());
+		nameNode.appendChild(valueNode);
+		root.appendChild(nameNode);
+
+		// Si es linux o es windows cambiar la ruta de creacion
 		Source source = new DOMSource(document);
-		Result result = new StreamResult(new java.io.File("C:/Users/Alejandro-ClassOne/git/restaurant/src/main/resources/res14prs.xml"));
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		transformer.transform(source, result);
-		String md5Str=md5(xmlToString(document));
-		FileWriter fw = new FileWriter("C:/Users/Alejandro-ClassOne/res14prs.md5");
-		fw.write(md5Str);
-		fw.close();
-		
-	}
-	
-	private String xmlToString(Document doc) throws TransformerException {
-		TransformerFactory tf = TransformerFactory.newInstance();
-		Transformer transformer = tf.newTransformer();
-		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-		StringWriter writer = new StringWriter();
-		transformer.transform(new DOMSource(doc), new StreamResult(writer));
-		String output = writer.getBuffer().toString().replaceAll("\n|\r", "");
-		return output;
+		Result result1, result2;
+		result1 = new StreamResult(new java.io.File(
+				"C:/Users/Alejandro-ClassOne/git/restaurant/res14prs.xml"));
+		result2 = new StreamResult(new java.io.File(
+				"C:/Users/Alejandro-ClassOne/res14prs.xml"));
+		Transformer transformer = TransformerFactory.newInstance()
+				.newTransformer();
+		transformer.transform(source, result1);
+		transformer.transform(source, result2);
+
 	}
 
-	private static String md5(String clear) throws NoSuchAlgorithmException{
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		byte[] b = md.digest(clear.getBytes());
 
-		int size = b.length;
-		StringBuffer h = new StringBuffer(size);
-		for (int i = 0; i < size; i++) {
-			int u = b[i] & 255;
-			if (u < 16) {
-				h.append("0" + Integer.toHexString(u));
-			} else {
-				h.append(Integer.toHexString(u));
-			}
-		}
-		return "classone"+h.toString();
-	}
 }

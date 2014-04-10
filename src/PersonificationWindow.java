@@ -298,6 +298,10 @@ public class PersonificationWindow {
 		JLabel lbLanguage = new JLabel("Idioma");
 		frame.getContentPane().add(lbLanguage, "4, 26, right, default");
 
+		String[] languageStrings = { "Español", "Inglés", "Portugués" };
+		languageComboBox = new JComboBox(languageStrings);
+		frame.getContentPane().add(languageComboBox, "6, 26, fill, default");
+
 		btnOk = new JButton("Aceptar");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -310,11 +314,11 @@ public class PersonificationWindow {
 								.getSelectedItem().toString(), osComboBox
 								.getSelectedItem().toString(), demo.getText(),
 						otherData.getText(), terminals.getText(), key2
-								.getText(), expirationDataChooser.getCalendar()
-								.getTime().toString(), maintenanceChooser
-								.getCalendar().getTime().toString(), version
-								.getText(), languageComboBox.getSelectedItem()
-								.toString(), dbPath.getText());
+								.getText(), expirationDataChooser.getDate()
+								.toString(), maintenanceChooser.getDate()
+								.toString(), version.getText(),
+						languageComboBox.getSelectedItem().toString(), dbPath
+								.getText());
 				try {
 					personification.createXML();
 				} catch (ParserConfigurationException
@@ -327,9 +331,6 @@ public class PersonificationWindow {
 				return;
 			}
 		});
-		String[] languageStrings = { "Español", "Inglés", "Portugués" };
-		languageComboBox = new JComboBox(languageStrings);
-		frame.getContentPane().add(languageComboBox, "6, 26, fill, default");
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
