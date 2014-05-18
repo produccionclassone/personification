@@ -1,9 +1,14 @@
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -42,6 +47,7 @@ public class Personification {
 	private String version;
 	private String language;
 	private String dbPath;
+	private PrintWriter out;
 
 	public Personification(String comercialName, String taxName,
 			String streetAddress, String zip, String state, String country,
@@ -390,25 +396,54 @@ public class Personification {
 
 		// Si es linux o es windows cambiar la ruta de creacion
 		Source source = new DOMSource(document);
-		Result result1 = null, result2 = null;
+		Result result = null;
 		if (getOs()=="Windows"){
-		result1 = new StreamResult(new java.io.File(
-				"C:/Users/Alejandro-ClassOne/git/restaurant/res14prs.xml"));
-		result2 = new StreamResult(new java.io.File(
+		
+		result = new StreamResult(new java.io.File(
 				"C:/Users/Alejandro-ClassOne/res14prs.xml"));
+		out = new PrintWriter("C:/Users/Alejandro-ClassOne/res14prs.md5");
+		String str = xmlToString(document);
+		out.println(toMd5(str));
+		out.close();
+		
 		}
-		else if (getOs()=="Linux"){
-			result1 = new StreamResult(new java.io.File(
-					"/home/alexpenedo/git/restaurantOld/res14prs.xml"));
-			result2 = new StreamResult(new java.io.File(
+		else if (getOs().equals("Linux")){
+			result = new StreamResult(new java.io.File(
 					"/u/ayx14res/res14prs.xml"));
+			out = new PrintWriter("/u/ayx14res/res14prs.md5");
+			String str = xmlToString(document);
+			out.println(toMd5(str));
+			out.close();
 		}
 		Transformer transformer = TransformerFactory.newInstance()
 				.newTransformer();
-		transformer.transform(source, result1);
-		transformer.transform(source, result2);
+		transformer.transform(source, result);
+		
 
+	}
+	
+	private String xmlToString(Document doc) throws TransformerException {
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+		StringWriter writer = new StringWriter();
+		transformer.transform(new DOMSource(doc), new StreamResult(writer));
+		String output = writer.getBuffer().toString().replaceAll("\n|\r", "");
+		return output;
 	}
 
 
+	private String toMd5(String plaintext) throws NoSuchAlgorithmException {
+		MessageDigest m = MessageDigest.getInstance("MD5");
+		m.reset();
+		m.update(plaintext.getBytes());
+		byte[] digest = m.digest();
+		BigInteger bigInt = new BigInteger(1, digest);
+		String hashtext = bigInt.toString(16);
+		// Now we need to zero pad it if you actually want the full 32 chars.
+		while (hashtext.length() < 32) {
+			hashtext = "0" + hashtext;
+		}
+		return "classone" + hashtext;
+	}
 }
