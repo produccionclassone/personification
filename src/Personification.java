@@ -390,11 +390,19 @@ public class Personification {
 
 		// Si es linux o es windows cambiar la ruta de creacion
 		Source source = new DOMSource(document);
-		Result result1, result2;
+		Result result1 = null, result2 = null;
+		if (getOs()=="Windows"){
 		result1 = new StreamResult(new java.io.File(
 				"C:/Users/Alejandro-ClassOne/git/restaurant/res14prs.xml"));
 		result2 = new StreamResult(new java.io.File(
 				"C:/Users/Alejandro-ClassOne/res14prs.xml"));
+		}
+		else if (getOs()=="Linux"){
+			result1 = new StreamResult(new java.io.File(
+					"/home/alexpenedo/git/restaurantOld/res14prs.xml"));
+			result2 = new StreamResult(new java.io.File(
+					"/u/ayx14res/res14prs.xml"));
+		}
 		Transformer transformer = TransformerFactory.newInstance()
 				.newTransformer();
 		transformer.transform(source, result1);
