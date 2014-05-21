@@ -400,8 +400,8 @@ public class Personification {
 		if (getOs()=="Windows"){
 		
 		result = new StreamResult(new java.io.File(
-				"C:/Users/Alejandro-ClassOne/res14prs.xml"));
-		out = new PrintWriter("C:/Users/Alejandro-ClassOne/res14prs.md5");
+				"C:/Users/Alejandro-ClassOne/git/restaurantOld/target/classes/ayx14res/res14prs.xml"));
+		out = new PrintWriter("C:/Users/Alejandro-ClassOne/restaurantOld/target/classes/ayx14res/res14prs.md5");
 		String str = xmlToString(document);
 		out.println(toMd5(str));
 		out.close();
@@ -409,8 +409,8 @@ public class Personification {
 		}
 		else if (getOs().equals("Linux")){
 			result = new StreamResult(new java.io.File(
-					"/u/ayx14res/res14prs.xml"));
-			out = new PrintWriter("/u/ayx14res/res14prs.md5");
+					"/home/alexpenedo/git/restaurantOld/target/classes/ayx14res/res14prs.xml"));
+			out = new PrintWriter("/home/alexpenedo/git/restaurantOld/target/classes/ayx14res/res14prs.md5");
 			String str = xmlToString(document);
 			out.println(toMd5(str));
 			out.close();
