@@ -25,60 +25,40 @@ import org.w3c.dom.Text;
 
 public class Personification {
 	private String comercialName;
-	private String taxName;
 	private String streetAddress;
 	private String zip;
 	private String state;
 	private String country;
 	private String phone1;
-	private String phone2;
 	private String mail;
 	private String website;
 	private String cif;
-	private String key1;
 	private String modules;
-	private String os;
-	private String demo;
-	private String otherData;
 	private String terminals;
-	private String key2;
 	private String expirationDate;
 	private String expirationDateMaintenance;
-	private String version;
 	private String language;
-	private String dbPath;
 	private PrintWriter out;
 
-	public Personification(String comercialName, String taxName,
-			String streetAddress, String zip, String state, String country,
-			String phone1, String phone2, String mail, String website,
-			String cif, String key1, String modules, String os, String demo,
-			String otherData, String terminals, String key2,
-			String expirationDate, String expirationDateMaintenance,
-			String version, String language, String dbPath) {
+	public Personification(String comercialName, String streetAddress,
+			String zip, String state, String country, String phone1,
+			String mail, String website, String cif, String modules,
+			String terminals, String expirationDate,
+			String expirationDateMaintenance, String language) {
 		this.comercialName = comercialName;
-		this.taxName = taxName;
 		this.streetAddress = streetAddress;
 		this.zip = zip;
 		this.state = state;
 		this.country = country;
 		this.phone1 = phone1;
-		this.phone2 = phone2;
 		this.mail = mail;
 		this.website = website;
 		this.cif = cif;
-		this.key1 = key1;
 		this.modules = modules;
-		this.os = os;
-		this.demo = demo;
-		this.otherData = otherData;
 		this.terminals = terminals;
-		this.key2 = key2;
 		this.expirationDate = expirationDate;
 		this.expirationDateMaintenance = expirationDateMaintenance;
-		this.version = version;
 		this.language = language;
-		this.dbPath = dbPath;
 	}
 
 	public String getComercialName() {
@@ -87,14 +67,6 @@ public class Personification {
 
 	public void setComercialName(String comercialName) {
 		this.comercialName = comercialName;
-	}
-
-	public String getTaxName() {
-		return taxName;
-	}
-
-	public void setTaxName(String taxName) {
-		this.taxName = taxName;
 	}
 
 	public String getStreetAddress() {
@@ -137,14 +109,6 @@ public class Personification {
 		this.phone1 = phone1;
 	}
 
-	public String getPhone2() {
-		return phone2;
-	}
-
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
-	}
-
 	public String getMail() {
 		return mail;
 	}
@@ -169,14 +133,6 @@ public class Personification {
 		this.cif = cif;
 	}
 
-	public String getKey1() {
-		return key1;
-	}
-
-	public void setKey1(String key1) {
-		this.key1 = key1;
-	}
-
 	public String getModules() {
 		return modules;
 	}
@@ -185,44 +141,12 @@ public class Personification {
 		this.modules = modules;
 	}
 
-	public String getOs() {
-		return os;
-	}
-
-	public void setSo(String os) {
-		this.os = os;
-	}
-
-	public String getDemo() {
-		return demo;
-	}
-
-	public void setDemo(String demo) {
-		this.demo = demo;
-	}
-
-	public String getOtherData() {
-		return otherData;
-	}
-
-	public void setOtherData(String otherData) {
-		this.otherData = otherData;
-	}
-
 	public String getTerminals() {
 		return terminals;
 	}
 
 	public void setTerminals(String terminals) {
 		this.terminals = terminals;
-	}
-
-	public String getKey2() {
-		return key2;
-	}
-
-	public void setKey2(String key2) {
-		this.key2 = key2;
 	}
 
 	public String getExpirationDate() {
@@ -241,28 +165,12 @@ public class Personification {
 		this.expirationDateMaintenance = expirationDateMaintenance;
 	}
 
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
 	public String getLanguage() {
 		return language;
 	}
 
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-
-	public String getDbPath() {
-		return dbPath;
-	}
-
-	public void setDbPath(String dbPath) {
-		this.dbPath = dbPath;
 	}
 
 	public void createXML() throws ParserConfigurationException,
@@ -284,11 +192,6 @@ public class Personification {
 																		// info
 		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode); // pegamos el elemento a la raiz "Documento"
-
-		nameNode = document.createElement("taxName");
-		valueNode = document.createTextNode(getTaxName());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
 
 		nameNode = document.createElement("streetAddress");
 		valueNode = document.createTextNode(getStreetAddress());
@@ -315,11 +218,6 @@ public class Personification {
 		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
 
-		nameNode = document.createElement("phone2");
-		valueNode = document.createTextNode(getPhone2());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
 		nameNode = document.createElement("mail");
 		valueNode = document.createTextNode(getMail());
 		nameNode.appendChild(valueNode);
@@ -335,33 +233,8 @@ public class Personification {
 		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
 
-		nameNode = document.createElement("key1");
-		valueNode = document.createTextNode(getKey1());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
 		nameNode = document.createElement("modules");
 		valueNode = document.createTextNode(getModules());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
-		nameNode = document.createElement("os");
-		valueNode = document.createTextNode(getOs());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
-		nameNode = document.createElement("demo");
-		valueNode = document.createTextNode(getDemo());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
-		nameNode = document.createElement("otherData");
-		valueNode = document.createTextNode(getOtherData());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
-		nameNode = document.createElement("key2");
-		valueNode = document.createTextNode(getKey2());
 		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
 
@@ -379,49 +252,27 @@ public class Personification {
 		valueNode = document.createTextNode(getExpirationDateMaintenance());
 		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
-		nameNode = document.createElement("version");
-		valueNode = document.createTextNode(getVersion());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
 
 		nameNode = document.createElement("language");
 		valueNode = document.createTextNode(getLanguage());
 		nameNode.appendChild(valueNode);
 		root.appendChild(nameNode);
 
-		nameNode = document.createElement("dbPath");
-		valueNode = document.createTextNode(getDbPath());
-		nameNode.appendChild(valueNode);
-		root.appendChild(nameNode);
-
 		// Si es linux o es windows cambiar la ruta de creacion
 		Source source = new DOMSource(document);
 		Result result = null;
-		if (getOs()=="Windows"){
-		
-		result = new StreamResult(new java.io.File(
-				"C:/Users/Alejandro-ClassOne/git/restaurantOld/target/classes/ayx14res/res14prs.xml"));
-		out = new PrintWriter("C:/Users/Alejandro-ClassOne/restaurantOld/target/classes/ayx14res/res14prs.md5");
+
+		result = new StreamResult(new java.io.File("res14prs.xml"));
+		out = new PrintWriter("res14prs.md5");
 		String str = xmlToString(document);
 		out.println(toMd5(str));
 		out.close();
-		
-		}
-		else if (getOs().equals("Linux")){
-			result = new StreamResult(new java.io.File(
-					"/home/alexpenedo/git/restaurantOld/target/classes/ayx14res/res14prs.xml"));
-			out = new PrintWriter("/home/alexpenedo/git/restaurantOld/target/classes/ayx14res/res14prs.md5");
-			String str = xmlToString(document);
-			out.println(toMd5(str));
-			out.close();
-		}
+
 		Transformer transformer = TransformerFactory.newInstance()
 				.newTransformer();
 		transformer.transform(source, result);
-		
-
 	}
-	
+
 	private String xmlToString(Document doc) throws TransformerException {
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer transformer = tf.newTransformer();
@@ -431,7 +282,6 @@ public class Personification {
 		String output = writer.getBuffer().toString().replaceAll("\n|\r", "");
 		return output;
 	}
-
 
 	private String toMd5(String plaintext) throws NoSuchAlgorithmException {
 		MessageDigest m = MessageDigest.getInstance("MD5");

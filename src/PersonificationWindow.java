@@ -23,29 +23,19 @@ public class PersonificationWindow {
 
 	private JFrame frame;
 	private JTextField comercialName;
-	private JTextField taxName;
 	private JTextField streetAddress;
 	private JTextField zip;
 	private JTextField state;
 	private JTextField country;
 	private JTextField phone1;
-	private JTextField phone2;
 	private JTextField mail;
 	private JTextField website;
 	private JTextField cif;
-	private JTextField key1;
-	private JTextField demo;
-	private JTextField otherData;
 	private JTextField terminals;
-	private JTextField key2;
-	private JTextField version;
-	private JTextField dbPath;
 	private JButton btnOk;
 	private JLabel lblModules;
 	@SuppressWarnings("rawtypes")
 	private JComboBox moduleComboBox;
-	@SuppressWarnings("rawtypes")
-	private JComboBox osComboBox;
 	@SuppressWarnings("rawtypes")
 	private JComboBox languageComboBox;
 	private JButton btnCancelar;
@@ -150,13 +140,6 @@ public class PersonificationWindow {
 		frame.getContentPane().add(comercialName, "6, 4");
 		comercialName.setColumns(10);
 
-		JLabel lblNombreFiscal = new JLabel("Nombre fiscal");
-		frame.getContentPane().add(lblNombreFiscal, "8, 4, right, default");
-
-		taxName = new JTextField();
-		frame.getContentPane().add(taxName, "10, 4, default, default");
-		taxName.setColumns(10);
-
 		JLabel lblStreetAddress = new JLabel("Dirección");
 		frame.getContentPane().add(lblStreetAddress, "4, 6, right, default");
 
@@ -192,13 +175,6 @@ public class PersonificationWindow {
 		frame.getContentPane().add(phone1, "6, 10, default, default");
 		phone1.setColumns(10);
 
-		JLabel lblPhone2 = new JLabel("Teléfono 2");
-		frame.getContentPane().add(lblPhone2, "8, 10, right, default");
-
-		phone2 = new JTextField();
-		frame.getContentPane().add(phone2, "10, 10, default, default");
-		phone2.setColumns(10);
-
 		JLabel lblMail = new JLabel("E-mail");
 		frame.getContentPane().add(lblMail, "4, 12, right, default");
 
@@ -220,27 +196,6 @@ public class PersonificationWindow {
 		frame.getContentPane().add(cif, "6, 14, default, default");
 		cif.setColumns(10);
 
-		JLabel lbDemo = new JLabel("Demo");
-		frame.getContentPane().add(lbDemo, "8, 14, right, default");
-
-		demo = new JTextField();
-		frame.getContentPane().add(demo, "10, 14, default, default");
-		demo.setColumns(10);
-
-		JLabel lbKey1 = new JLabel("Clave 1");
-		frame.getContentPane().add(lbKey1, "4, 16, right, default");
-
-		key1 = new JTextField();
-		frame.getContentPane().add(key1, "6, 16, default, default");
-		key1.setColumns(10);
-
-		JLabel lbKey2 = new JLabel("Clave 2");
-		frame.getContentPane().add(lbKey2, "8, 16, right, default");
-
-		key2 = new JTextField();
-		frame.getContentPane().add(key2, "10, 16, default, default");
-		key2.setColumns(10);
-
 		lblModules = new JLabel("Modules");
 		frame.getContentPane().add(lblModules, "4, 18, right, default");
 
@@ -248,40 +203,12 @@ public class PersonificationWindow {
 		moduleComboBox = new JComboBox(moduleStrings);
 		frame.getContentPane().add(moduleComboBox, "6, 18, fill, default");
 
-		JLabel lbOs = new JLabel("S.O.");
-		frame.getContentPane().add(lbOs, "8, 18, right, default");
-
-		String[] osStrings = { "Windows", "Linux" };
-		osComboBox = new JComboBox(osStrings);
-		frame.getContentPane().add(osComboBox, "10, 18, fill, default");
-
 		JLabel lbTerminals = new JLabel("Número de terminales");
 		frame.getContentPane().add(lbTerminals, "4, 20, right, default");
 
 		terminals = new JTextField();
 		frame.getContentPane().add(terminals, "6, 20, left, default");
 		terminals.setColumns(10);
-
-		JLabel lbVersion = new JLabel("Versión");
-		frame.getContentPane().add(lbVersion, "8, 20, right, default");
-
-		version = new JTextField();
-		frame.getContentPane().add(version, "10, 20, left, default");
-		version.setColumns(10);
-
-		JLabel lbOtherData = new JLabel("Otros datos");
-		frame.getContentPane().add(lbOtherData, "4, 22, right, default");
-
-		otherData = new JTextField();
-		frame.getContentPane().add(otherData, "6, 22, default, top");
-		otherData.setColumns(10);
-
-		JLabel lbDbPath = new JLabel("Ruta Base de datos");
-		frame.getContentPane().add(lbDbPath, "8, 22, right, default");
-
-		dbPath = new JTextField();
-		frame.getContentPane().add(dbPath, "10, 22");
-		dbPath.setColumns(10);
 
 		JLabel lbExpirationDate = new JLabel("F. de caducidad");
 		frame.getContentPane().add(lbExpirationDate, "4, 24, right, default");
@@ -307,19 +234,14 @@ public class PersonificationWindow {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Personification personification = new Personification(
-						comercialName.getText(), taxName.getText(),
-						streetAddress.getText(), zip.getText(),
-						state.getText(), country.getText(), phone1.getText(),
-						phone2.getText(), mail.getText(), website.getText(),
-						cif.getText(), key1.getText(), moduleComboBox
-								.getSelectedItem().toString(), osComboBox
-								.getSelectedItem().toString(), demo.getText(),
-						otherData.getText(), terminals.getText(), key2
-								.getText(), expirationDataChooser.getDate()
-								.toString(), maintenanceChooser.getDate()
-								.toString(), version.getText(),
-						languageComboBox.getSelectedItem().toString(), dbPath
-								.getText());
+						comercialName.getText(), streetAddress.getText(), zip
+								.getText(), state.getText(), country.getText(),
+						phone1.getText(), mail.getText(), website.getText(),
+						cif.getText(), moduleComboBox.getSelectedItem()
+								.toString(), terminals.getText(),
+						expirationDataChooser.getDate().toString(),
+						maintenanceChooser.getDate().toString(),
+						languageComboBox.getSelectedItem().toString());
 				try {
 					personification.createXML();
 				} catch (ParserConfigurationException
